@@ -5,6 +5,7 @@ using GHelper.Gpu;
 using GHelper.Gpu.AMD;
 using GHelper.Gpu.NVidia;
 using GHelper.Helpers;
+using GHelper.Hp;
 using System.Diagnostics;
 using System.Management;
 using System.Runtime.InteropServices;
@@ -59,6 +60,7 @@ public static class HardwareControl
     static bool isPZ13 = AppConfig.IsPZ13();
     static bool isAlly = AppConfig.IsAlly();
     static bool isAMDiGPU = AppConfig.IsAMDiGPU();
+    static bool isHP = AppConfig.IsHP();
 
     static bool _chargeWatt = AppConfig.Is("charge_watt");
 
@@ -452,6 +454,7 @@ public static class HardwareControl
         lastUpdate = last;
 
         if (isPZ13) return (float)GetCPUTempWMI();
+        if (isHP) return cpuTemp = GetCPUTempHP();
         cpuTemp = Program.acpi.DeviceGet(AsusACPI.Temp_CPU);
 
         if (cpuTemp < 0) try
@@ -468,6 +471,36 @@ public static class HardwareControl
 
 
         return cpuTemp;
+    }
+
+    static List<PerformanceCounter>? _thermalZones;
+
+    // HP BIOS temperature, falls back to the hottest ACPI thermal zone
+    static float GetCPUTempHP()
+    {
+        int temp = HpWmi.GetTemp();
+        if (temp > 0) return temp;
+
+        try
+        {
+            _thermalZones ??= new PerformanceCounterCategory("Thermal Zone Information").GetInstanceNames()
+                .Select(name => new PerformanceCounter("Thermal Zone Information", "Temperature", name, true))
+                .ToList();
+
+            float max = -1;
+            foreach (var zone in _thermalZones) max = Math.Max(max, zone.NextValue() - 273);
+            return max;
+        }
+        catch (Exception)
+        {
+            return -1;
+        }
+    }
+
+    public static int GetFan(AsusFan device)
+    {
+        if (isHP) return HpWmi.GetFan(device);
+        return Program.acpi.GetFan(device);
     }
 
     static double GetCPUTempWMI()
@@ -510,7 +543,7 @@ public static class HardwareControl
 
         if (gpuTemp is null || gpuTemp < 0 || gpuTemp >= 125)
         {
-            int acpiTemp = Program.acpi.DeviceGet(AsusACPI.Temp_GPU);
+            int acpiTemp = isHP ? -1 : Program.acpi.DeviceGet(AsusACPI.Temp_GPU);
             gpuTemp = (acpiTemp > 0 && acpiTemp < 125) ? acpiTemp : null;
         }
 
@@ -837,9 +870,9 @@ public static class HardwareControl
 
         if (Program.acpi is null) return;
 
-        cpuFan = FanSensorControl.FormatFan(AsusFan.CPU, Program.acpi.GetFan(AsusFan.CPU));
-        gpuFan = FanSensorControl.FormatFan(AsusFan.GPU, Program.acpi.GetFan(AsusFan.GPU));
-        midFan = FanSensorControl.FormatFan(AsusFan.Mid, Program.acpi.GetFan(AsusFan.Mid));
+        cpuFan = FanSensorControl.FormatFan(AsusFan.CPU, GetFan(AsusFan.CPU));
+        gpuFan = FanSensorControl.FormatFan(AsusFan.GPU, GetFan(AsusFan.GPU));
+        midFan = FanSensorControl.FormatFan(AsusFan.Mid, GetFan(AsusFan.Mid));
 
         cpuTemp = GetCPUTemp();
         gpuTemp = GetGPUTemp();
@@ -857,8 +890,8 @@ public static class HardwareControl
 
         if (readFans)
         {
-            cpuFanRPM = Program.acpi.GetFan(AsusFan.CPU) * 100;
-            gpuFanRPM = Program.acpi.GetFan(AsusFan.GPU) * 100;
+            cpuFanRPM = GetFan(AsusFan.CPU) * 100;
+            gpuFanRPM = GetFan(AsusFan.GPU) * 100;
         }
         else
         {

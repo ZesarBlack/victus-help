@@ -747,6 +747,25 @@ public static class AppConfig
         return ContainsModel("ROG") || ContainsModel("TUF") || ContainsModel("Vivobook") || ContainsModel("Zenbook");
     }
 
+    private static readonly Lazy<string> _manufacturer = new(() =>
+    {
+        try
+        {
+            using var searcher = new ManagementObjectSearcher("Select Manufacturer from Win32_ComputerSystem");
+            foreach (var obj in searcher.Get())
+            {
+                using (obj) return obj["Manufacturer"]?.ToString() ?? string.Empty;
+            }
+        }
+        catch { }
+        return string.Empty;
+    });
+
+    public static bool IsHP()
+    {
+        return ContainsModel("Victus") || ContainsModel("OMEN") || _manufacturer.Value.Equals("HP", StringComparison.OrdinalIgnoreCase) || _manufacturer.Value.StartsWith("Hewlett", StringComparison.OrdinalIgnoreCase);
+    }
+
     public static bool IsBWIcon()
     {
         return Is("bw_icon");

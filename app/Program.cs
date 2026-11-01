@@ -474,6 +474,8 @@ namespace GHelper
                 trayIcon.Dispose();
             }
 
+            if (AppConfig.IsHP()) Hp.HpFanControl.Stop();
+
             PeripheralsProvider.UnregisterForDeviceEvents();
             clamshellControl.UnregisterDisplayEvents();
             NativeMethods.UnregisterPowerSettingNotification(unRegPowerNotify);

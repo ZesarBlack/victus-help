@@ -1,5 +1,6 @@
 using GHelper.Gpu.NVidia;
 using GHelper.Helpers;
+using GHelper.Hp;
 using GHelper.USB;
 using PawnIO;
 
@@ -155,7 +156,8 @@ namespace GHelper.Mode
                     ct.ThrowIfCancellationRequested();
 
                     if (AppConfig.Is("status_mode")) Program.acpi.DeviceSet(AsusACPI.StatusMode, [0x00, Modes.GetBase(mode) == AsusACPI.PerformanceSilent ? (byte)0x02 : (byte)0x03], "StatusMode");
-                    Program.acpi.SetPerformanceMode(AppConfig.IsManualModeRequired() ? AsusACPI.PerformanceManual : Modes.GetBase(mode));
+                    if (AppConfig.IsHP()) HpWmi.SetPerformanceMode(Modes.GetBase(mode));
+                    else Program.acpi.SetPerformanceMode(AppConfig.IsManualModeRequired() ? AsusACPI.PerformanceManual : Modes.GetBase(mode));
 
                     SetGPUClocks();
 
@@ -199,10 +201,20 @@ namespace GHelper.Mode
             // CPU Boost setting override
             if (AppConfig.GetMode("auto_boost") != -1)
                     PowerNative.SetCPUBoost(AppConfig.GetMode("auto_boost"));
+            else if (AppConfig.IsHP())
+                PowerNative.SetCPUBoost(HpBoost(Modes.GetBase(mode)));
 
             settings.FansInit();
         }
 
+
+        // Windows CPU boost: Silent = Disabled, Balanced = Enabled (not Aggressive), Turbo = Aggressive
+        private static int HpBoost(int baseMode) => baseMode switch
+        {
+            AsusACPI.PerformanceSilent => 0,
+            AsusACPI.PerformanceTurbo => 2,
+            _ => 1,
+        };
 
         private void ModeToggleTimer_Elapsed(object? sender, System.Timers.ElapsedEventArgs e)
         {
@@ -231,6 +243,17 @@ namespace GHelper.Mode
         public void AutoFans(bool force = false)
         {
             customFans = false;
+
+            if (AppConfig.IsHP())
+            {
+                if (AppConfig.IsApplyFans() || force)
+                {
+                    HpFanControl.Start(AppConfig.GetFanConfig(AsusFan.CPU), AppConfig.GetFanConfig(AsusFan.GPU));
+                    customFans = HpFanControl.IsRunning;
+                }
+                else HpFanControl.Stop();
+                return;
+            }
 
             if (AppConfig.IsApplyFans() || force)
             {
@@ -639,6 +662,7 @@ namespace GHelper.Mode
 
         public void ShutdownReset()
         {
+            if (AppConfig.IsHP()) HpFanControl.Stop();
             if (!AppConfig.IsShutdownReset()) return;
             Program.acpi.DeviceSet(AsusACPI.PerformanceMode,AsusACPI.PerformanceBalanced, "Mode Reset");
         }
