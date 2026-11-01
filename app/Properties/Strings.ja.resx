@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -163,7 +163,7 @@
     <value>アプリは既に実行中です</value>
   </data>
   <data name="AppAlreadyRunningText" xml:space="preserve">
-    <value>G-Helperは既に実行されています。システムトレイのアイコンをチェックしてください。</value>
+    <value>Victus Helperは既に実行されています。システムトレイのアイコンをチェックしてください。</value>
   </data>
   <data name="Apply" xml:space="preserve">
     <value>適用</value>
@@ -726,7 +726,7 @@
     <value>1つのゾーン</value>
   </data>
   <data name="OpenGHelper" xml:space="preserve">
-    <value>G-Helperウィンドウを開く</value>
+    <value>Victus Helperウィンドウを開く</value>
   </data>
   <data name="OptimalDisplayBrightness" xml:space="preserve">
     <value>最適な画面の明るさ</value>
@@ -786,7 +786,7 @@
     <value>リセット</value>
   </data>
   <data name="RestartGPU" xml:space="preserve">
-    <value>何らかの問題が dGPU を使用しており、エコモードを防止しています。G-Helper をデバイスマネージャーで dGPU を再起動させてください。(自己責任で進んでください)</value>
+    <value>何らかの問題が dGPU を使用しており、エコモードを防止しています。Victus Helper をデバイスマネージャーで dGPU を再起動させてください。(自己責任で進んでください)</value>
   </data>
   <data name="RestartingNVServices" xml:space="preserve">
     <value>Restarting NV Services...</value>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -163,7 +163,7 @@
     <value>应用已经在运行</value>
   </data>
   <data name="AppAlreadyRunningText" xml:space="preserve">
-    <value>G-Helper已经在运行。 请查看系统托盘中的图标。</value>
+    <value>Victus Helper已经在运行。 请查看系统托盘中的图标。</value>
   </data>
   <data name="Apply" xml:space="preserve">
     <value>应用</value>
@@ -726,7 +726,7 @@
     <value>单区</value>
   </data>
   <data name="OpenGHelper" xml:space="preserve">
-    <value>打开G-Helper窗口</value>
+    <value>打开Victus Helper窗口</value>
   </data>
   <data name="OptimalDisplayBrightness" xml:space="preserve">
     <value>最佳显示亮度</value>
@@ -786,7 +786,7 @@
     <value>重置</value>
   </data>
   <data name="RestartGPU" xml:space="preserve">
-    <value>有程序正在使用独显并阻止进入集显模式。要让 G-Helper 在设备管理器中重新启动独显吗？（请自行承担风险）</value>
+    <value>有程序正在使用独显并阻止进入集显模式。要让 Victus Helper 在设备管理器中重新启动独显吗？（请自行承担风险）</value>
   </data>
   <data name="RestartingNVServices" xml:space="preserve">
     <value>正在重启 NV 服务……</value>

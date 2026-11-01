@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -163,7 +163,7 @@
     <value>App'en kører allerede</value>
   </data>
   <data name="AppAlreadyRunningText" xml:space="preserve">
-    <value>G-Helper kører allerede. Tjek systembakken for et ikon.</value>
+    <value>Victus Helper kører allerede. Tjek systembakken for et ikon.</value>
   </data>
   <data name="Apply" xml:space="preserve">
     <value>Anvend</value>
@@ -726,7 +726,7 @@ Vil du stadig fortsætte?</value>
     <value>En zone</value>
   </data>
   <data name="OpenGHelper" xml:space="preserve">
-    <value>Åbn G-Helper vindue</value>
+    <value>Åbn Victus Helper vindue</value>
   </data>
   <data name="OptimalDisplayBrightness" xml:space="preserve">
     <value>Optimal skærmlysstyrke</value>
@@ -786,7 +786,7 @@ Vil du stadig fortsætte?</value>
     <value>Nulstil</value>
   </data>
   <data name="RestartGPU" xml:space="preserve">
-    <value>Noget bruger dGPU og forhindrer Øko-tilstand. Lad G-Helper forsøge at genstarte dGPU i enhedshåndtering? (fortsæt på egen risiko)</value>
+    <value>Noget bruger dGPU og forhindrer Øko-tilstand. Lad Victus Helper forsøge at genstarte dGPU i enhedshåndtering? (fortsæt på egen risiko)</value>
   </data>
   <data name="RestartingNVServices" xml:space="preserve">
     <value>Restarting NV Services...</value>

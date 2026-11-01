@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -163,7 +163,7 @@
     <value>Aplikasi sudah berjalan</value>
   </data>
   <data name="AppAlreadyRunningText" xml:space="preserve">
-    <value>G-Helper sudah berjalan. Periksa system tray untuk menemukan ikonnya.</value>
+    <value>Victus Helper sudah berjalan. Periksa system tray untuk menemukan ikonnya.</value>
   </data>
   <data name="Apply" xml:space="preserve">
     <value>Terapkan</value>
@@ -726,7 +726,7 @@ Apakah Anda masih ingin melanjutkan?</value>
     <value>One Zone</value>
   </data>
   <data name="OpenGHelper" xml:space="preserve">
-    <value>Buka Jendela G-Helper</value>
+    <value>Buka Jendela Victus Helper</value>
   </data>
   <data name="OptimalDisplayBrightness" xml:space="preserve">
     <value>Kecerahan Layar Optimal</value>
@@ -786,7 +786,7 @@ Apakah Anda masih ingin melanjutkan?</value>
     <value>Reset</value>
   </data>
   <data name="RestartGPU" xml:space="preserve">
-    <value>Ada yang menggunakan dGPU dan mencegah mode Eco. Biarkan G-Helper mencoba memulai ulang dGPU di pengelola perangkat? (Silakan lanjutkan dengan risiko Anda sendiri)</value>
+    <value>Ada yang menggunakan dGPU dan mencegah mode Eco. Biarkan Victus Helper mencoba memulai ulang dGPU di pengelola perangkat? (Silakan lanjutkan dengan risiko Anda sendiri)</value>
   </data>
   <data name="RestartingNVServices" xml:space="preserve">
     <value>Restarting NV Services...</value>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -726,7 +726,7 @@
     <value>منطقة واحدة</value>
   </data>
   <data name="OpenGHelper" xml:space="preserve">
-    <value>فتح نافذة G-Helper</value>
+    <value>فتح نافذة Victus Helper</value>
   </data>
   <data name="OptimalDisplayBrightness" xml:space="preserve">
     <value>السطوع الأمثل للشاشة</value>
@@ -786,7 +786,7 @@
     <value>إعادة ضبط</value>
   </data>
   <data name="RestartGPU" xml:space="preserve">
-    <value>هناك شيء يستخدم وحدة معالجة الرسومات المنفصلة ويمنع وضع التوفير. هل تريد أن يحاول G-Helper إعادة تشغيل وحدة معالجة الرسومات في مدير الأجهزة؟ (يرجى المتابعة على مسؤوليتك الخاصة)</value>
+    <value>هناك شيء يستخدم وحدة معالجة الرسومات المنفصلة ويمنع وضع التوفير. هل تريد أن يحاول Victus Helper إعادة تشغيل وحدة معالجة الرسومات في مدير الأجهزة؟ (يرجى المتابعة على مسؤوليتك الخاصة)</value>
   </data>
   <data name="RestartingNVServices" xml:space="preserve">
     <value>Restarting NV Services...</value>

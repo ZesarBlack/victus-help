@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -163,7 +163,7 @@
     <value>프로그램이 이미 실행중입니다.</value>
   </data>
   <data name="AppAlreadyRunningText" xml:space="preserve">
-    <value>G-Helper가 이미 실행중입니다. 시스템 트레이에서 아이콘을 확인하십시오.</value>
+    <value>Victus Helper가 이미 실행중입니다. 시스템 트레이에서 아이콘을 확인하십시오.</value>
   </data>
   <data name="Apply" xml:space="preserve">
     <value>적용</value>
@@ -726,7 +726,7 @@
     <value>단일 영역</value>
   </data>
   <data name="OpenGHelper" xml:space="preserve">
-    <value>G-Helper 열기</value>
+    <value>Victus Helper 열기</value>
   </data>
   <data name="OptimalDisplayBrightness" xml:space="preserve">
     <value>최적 디스플레이 밝기</value>

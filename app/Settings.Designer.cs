@@ -2221,7 +2221,7 @@ namespace GHelper
             Padding = new Padding(11);
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "G-Helper";
+            Text = "Victus Helper";
             panelMatrix.ResumeLayout(false);
             panelMatrix.PerformLayout();
             tableLayoutMatrix.ResumeLayout(false);

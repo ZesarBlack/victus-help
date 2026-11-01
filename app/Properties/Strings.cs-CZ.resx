@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -160,7 +160,7 @@
     <value>Aplikace je již spuštěna</value>
   </data>
   <data name="AppAlreadyRunningText" xml:space="preserve">
-    <value>G-Helper je již spuštěn. Zkontrolujte ikonu v systemové liště.</value>
+    <value>Victus Helper je již spuštěn. Zkontrolujte ikonu v systemové liště.</value>
   </data>
   <data name="Apply" xml:space="preserve">
     <value>Použít</value>
@@ -693,7 +693,7 @@ Chcete přesto pokračovat?</value>
     <value>Jedna zóna</value>
   </data>
   <data name="OpenGHelper" xml:space="preserve">
-    <value>Otevřít okno G-Helperu</value>
+    <value>Otevřít okno Victus Helperu</value>
   </data>
   <data name="OptimalDisplayBrightness" xml:space="preserve">
     <value>Optimální jas displeje</value>
@@ -753,7 +753,7 @@ Chcete přesto pokračovat?</value>
     <value>Obnovit</value>
   </data>
   <data name="RestartGPU" xml:space="preserve">
-    <value>Něco používá dGPU a brání přepnutí do Eco režimu. Povolit G-Helperu zkusit restartovat dGPU ve Správci zařízení? (Na vlastní odpovědnost)</value>
+    <value>Něco používá dGPU a brání přepnutí do Eco režimu. Povolit Victus Helperu zkusit restartovat dGPU ve Správci zařízení? (Na vlastní odpovědnost)</value>
   </data>
   <data name="RPM" xml:space="preserve">
     <value>Otáček za minutu</value>

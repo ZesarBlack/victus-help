@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -163,7 +163,7 @@
     <value>Uygulama zaten çalışıyor</value>
   </data>
   <data name="AppAlreadyRunningText" xml:space="preserve">
-    <value>G-Helper zaten çalışıyor. Simge için görev çubuğunu kontrol edin.</value>
+    <value>Victus Helper zaten çalışıyor. Simge için görev çubuğunu kontrol edin.</value>
   </data>
   <data name="Apply" xml:space="preserve">
     <value>Uygula</value>
@@ -726,7 +726,7 @@ Yine de devam etmek istiyor musunuz?</value>
     <value>Tek Bölge</value>
   </data>
   <data name="OpenGHelper" xml:space="preserve">
-    <value>G-Helper penceresini aç</value>
+    <value>Victus Helper penceresini aç</value>
   </data>
   <data name="OptimalDisplayBrightness" xml:space="preserve">
     <value>Optimum Ekran Parlaklığı</value>
@@ -786,7 +786,7 @@ Yine de devam etmek istiyor musunuz?</value>
     <value>Sıfırla</value>
   </data>
   <data name="RestartGPU" xml:space="preserve">
-    <value>Bir şey harici GPU'yu kullanıyor ve Eco modunu engelliyor. G-Helper aygıt yöneticisinde harici GPU'yu yeniden başlatmayı denesin mi? (Kendi sorumluluğunuzdadır)</value>
+    <value>Bir şey harici GPU'yu kullanıyor ve Eco modunu engelliyor. Victus Helper aygıt yöneticisinde harici GPU'yu yeniden başlatmayı denesin mi? (Kendi sorumluluğunuzdadır)</value>
   </data>
   <data name="RestartingNVServices" xml:space="preserve">
     <value>NV Servisleri Yeniden Başlatılıyor...</value>

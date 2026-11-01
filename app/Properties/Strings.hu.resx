@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -163,7 +163,7 @@
     <value>Az alkalmazás már el lett indítva</value>
   </data>
   <data name="AppAlreadyRunningText" xml:space="preserve">
-    <value>A G-Helper már fut. A rendszertárcán megtalálod az alkalmazás ikonját.</value>
+    <value>A Victus Helper már fut. A rendszertárcán megtalálod az alkalmazás ikonját.</value>
   </data>
   <data name="Apply" xml:space="preserve">
     <value>Alkalmaz</value>
@@ -726,7 +726,7 @@ Folytatni szeretnéd?</value>
     <value>Egy Zóna</value>
   </data>
   <data name="OpenGHelper" xml:space="preserve">
-    <value>G-Helper ablak megnyitása</value>
+    <value>Victus Helper ablak megnyitása</value>
   </data>
   <data name="OptimalDisplayBrightness" xml:space="preserve">
     <value>Optimális kijelző fényerő</value>
@@ -786,7 +786,7 @@ Folytatni szeretnéd?</value>
     <value>Visszaállítás</value>
   </data>
   <data name="RestartGPU" xml:space="preserve">
-    <value>Valami használja még a dGPU-t, ezzel megakadályozva az Eco móda lépést. Próbálja meg a G-Helper újraindítani a dGPU-t az eszközkezelőben? (Kérjük, saját felelősségére folytassa)</value>
+    <value>Valami használja még a dGPU-t, ezzel megakadályozva az Eco móda lépést. Próbálja meg a Victus Helper újraindítani a dGPU-t az eszközkezelőben? (Kérjük, saját felelősségére folytassa)</value>
   </data>
   <data name="RestartingNVServices" xml:space="preserve">
     <value>NV szolgáltatások újraindítása...</value>

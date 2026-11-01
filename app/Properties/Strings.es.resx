@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -163,7 +163,7 @@
     <value>La apliación ya está ejecutándose</value>
   </data>
   <data name="AppAlreadyRunningText" xml:space="preserve">
-    <value>G-Helper ya está ejecutándose. Compruebe la bandeja del sistema.</value>
+    <value>Victus Helper ya está ejecutándose. Compruebe la bandeja del sistema.</value>
   </data>
   <data name="Apply" xml:space="preserve">
     <value>Aplicar</value>
@@ -726,7 +726,7 @@
     <value>Una zona</value>
   </data>
   <data name="OpenGHelper" xml:space="preserve">
-    <value>Abrir ventana G-Helper</value>
+    <value>Abrir ventana Victus Helper</value>
   </data>
   <data name="OptimalDisplayBrightness" xml:space="preserve">
     <value>Brillo óptimo de pantalla</value>

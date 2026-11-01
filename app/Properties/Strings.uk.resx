@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -163,7 +163,7 @@
     <value>Програма вже запущена</value>
   </data>
   <data name="AppAlreadyRunningText" xml:space="preserve">
-    <value>G-Helper вже запущено. Перевірте значок у системному лотку.</value>
+    <value>Victus Helper вже запущено. Перевірте значок у системному лотку.</value>
   </data>
   <data name="Apply" xml:space="preserve">
     <value>Застосувати</value>
@@ -726,7 +726,7 @@
     <value>Одна зона</value>
   </data>
   <data name="OpenGHelper" xml:space="preserve">
-    <value>Відкрити вікно G-Helper</value>
+    <value>Відкрити вікно Victus Helper</value>
   </data>
   <data name="OptimalDisplayBrightness" xml:space="preserve">
     <value>Оптимальна яскравість екрана</value>
@@ -786,7 +786,7 @@
     <value>Скинути</value>
   </data>
   <data name="RestartGPU" xml:space="preserve">
-    <value>Щось використовує dGPU та запобігає Еко-режиму. Дозвольте G-Helper спробувати перезапустити dGPU у менеджері пристрою? (Будь ласка, продовжуйте на власний ризик)</value>
+    <value>Щось використовує dGPU та запобігає Еко-режиму. Дозвольте Victus Helper спробувати перезапустити dGPU у менеджері пристрою? (Будь ласка, продовжуйте на власний ризик)</value>
   </data>
   <data name="RestartingNVServices" xml:space="preserve">
     <value>Restarting NV Services...</value>

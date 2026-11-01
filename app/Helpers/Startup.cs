@@ -7,7 +7,7 @@ using System.Security.Principal;
 public class Startup
 {
 
-    static string taskName = "GHelper";
+    static string taskName = "VictusHelper";
     static string chargeTaskName = taskName + "Charge";
     static string strExeFilePath = Application.ExecutablePath.Trim();
     static string userTaskName = taskName + "_" + WindowsIdentity.GetCurrent().User.Value;
@@ -145,7 +145,7 @@ public class Startup
 
         using (TaskDefinition td = TaskService.Instance.NewTask())
         {
-            td.RegistrationInfo.Description = "G-Helper Charge Limit";
+            td.RegistrationInfo.Description = "Victus Helper Charge Limit";
             td.Triggers.Add(new BootTrigger());
             td.Triggers.Add(new EventTrigger
             {
@@ -180,7 +180,7 @@ public class Startup
         using (TaskDefinition td = TaskService.Instance.NewTask())
         {
 
-            td.RegistrationInfo.Description = "G-Helper Auto Start";
+            td.RegistrationInfo.Description = "Victus Helper Auto Start";
             td.Triggers.Add(new LogonTrigger { UserId = WindowsIdentity.GetCurrent().Name, Delay = TimeSpan.FromSeconds(1) });
             // ConsoleConnect = fast user switch back; no SessionUnlock, it fires on every unlock
             td.Triggers.Add(new SessionStateChangeTrigger { StateChange = TaskSessionStateChangeType.ConsoleConnect, UserId = WindowsIdentity.GetCurrent().Name, Delay = TimeSpan.FromSeconds(1) });
@@ -203,7 +203,7 @@ public class Startup
             {
                 Logger.WriteLine("Can't create startup task: " + ex.Message);
                 if (ProcessHelper.IsUserAdministrator())
-                    MessageBox.Show("Can't create a start up task. Try running Task Scheduler by hand and manually deleting GHelper task if it exists there.", "Scheduler Error", MessageBoxButtons.OK);
+                    MessageBox.Show("Can't create a start up task. Try running Task Scheduler by hand and manually deleting VictusHelper task if it exists there.", "Scheduler Error", MessageBoxButtons.OK);
                 else
                     ProcessHelper.RunAsAdmin();
             }
@@ -225,7 +225,7 @@ public class Startup
             catch (Exception)
             {
                 if (ProcessHelper.IsUserAdministrator())
-                    MessageBox.Show("Can't remove task. Try running Task Scheduler by hand and manually deleting GHelper task if it exists there.", "Scheduler Error", MessageBoxButtons.OK);
+                    MessageBox.Show("Can't remove task. Try running Task Scheduler by hand and manually deleting VictusHelper task if it exists there.", "Scheduler Error", MessageBoxButtons.OK);
                 else
                     ProcessHelper.RunAsAdmin();
             }

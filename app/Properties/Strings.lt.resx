@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -163,7 +163,7 @@
     <value>Programėlė jau paleista</value>
   </data>
   <data name="AppAlreadyRunningText" xml:space="preserve">
-    <value>G-Helper jau paleistas. Patikrinkite, ar sistemos juostelėje nėra piktogramos.</value>
+    <value>Victus Helper jau paleistas. Patikrinkite, ar sistemos juostelėje nėra piktogramos.</value>
   </data>
   <data name="Apply" xml:space="preserve">
     <value>Taikyti</value>
@@ -726,7 +726,7 @@ Vis tiek norite tęsti?</value>
     <value>Viena zona</value>
   </data>
   <data name="OpenGHelper" xml:space="preserve">
-    <value>Atidaryti G-Helper langą</value>
+    <value>Atidaryti Victus Helper langą</value>
   </data>
   <data name="OptimalDisplayBrightness" xml:space="preserve">
     <value>Optimalus ekrano ryškumas</value>
@@ -786,7 +786,7 @@ Vis tiek norite tęsti?</value>
     <value>Atstatyti</value>
   </data>
   <data name="RestartGPU" xml:space="preserve">
-    <value>Kažkas naudoja dGPU ir neleidžia įjungti ekonomiško režimo. Norite leisti G-Helper bandyti iš naujo paleisti dGPU įrenginių tvarkytuvėje? (Tęskite savo rizika)</value>
+    <value>Kažkas naudoja dGPU ir neleidžia įjungti ekonomiško režimo. Norite leisti Victus Helper bandyti iš naujo paleisti dGPU įrenginių tvarkytuvėje? (Tęskite savo rizika)</value>
   </data>
   <data name="RestartingNVServices" xml:space="preserve">
     <value>Perkraunami NV servisai...</value>

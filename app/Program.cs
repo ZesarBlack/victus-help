@@ -119,7 +119,7 @@ namespace GHelper
 
             trayIcon = new NotifyIcon
             {
-                Text = "G-Helper",
+                Text = "Victus Helper",
                 Icon = Properties.Resources.standard,
                 Visible = true
             };

@@ -66,6 +66,9 @@ namespace GHelper.AutoUpdate
         async void CheckForUpdatesAsync(bool force = false)
         {
 
+            // Victus Helper is a fork: upstream G-Helper releases would overwrite it
+            return;
+
             if (AppConfig.Is("skip_updates")) return;
 
             try

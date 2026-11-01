@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -163,7 +163,7 @@
     <value>App already running</value>
   </data>
   <data name="AppAlreadyRunningText" xml:space="preserve">
-    <value>G-Helper is already running. Check system tray for an icon.</value>
+    <value>Victus Helper is already running. Check system tray for an icon.</value>
   </data>
   <data name="Apply" xml:space="preserve">
     <value>Apply</value>
@@ -726,7 +726,7 @@ Do you still want to continue?</value>
     <value>One Zone</value>
   </data>
   <data name="OpenGHelper" xml:space="preserve">
-    <value>Open G-Helper window</value>
+    <value>Open Victus Helper window</value>
   </data>
   <data name="OptimalDisplayBrightness" xml:space="preserve">
     <value>Optimal Display Brightness</value>
@@ -786,7 +786,7 @@ Do you still want to continue?</value>
     <value>Reset</value>
   </data>
   <data name="RestartGPU" xml:space="preserve">
-    <value>Something is using dGPU and preventing Eco mode. Let G-Helper try to restart dGPU in device manager? (Please proceed at your own risk)</value>
+    <value>Something is using dGPU and preventing Eco mode. Let Victus Helper try to restart dGPU in device manager? (Please proceed at your own risk)</value>
   </data>
   <data name="RestartingNVServices" xml:space="preserve">
     <value>Restarting NV Services...</value>

@@ -864,7 +864,7 @@ public class AsusACPI
 
     public string ScanRange()
     {
-        string appPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\GHelper";
+        string appPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\VictusHelper";
         string logFile = appPath + "\\scan.txt";
         using (StreamWriter w = File.AppendText(logFile))
         {
