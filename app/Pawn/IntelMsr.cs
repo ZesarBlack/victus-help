@@ -6,6 +6,10 @@ namespace PawnIO
     {
         private const uint MSR_RAPL_POWER_UNIT   = 0x606;
         private const uint MSR_PKG_ENERGY_STATUS = 0x611;
+        private const uint MSR_TEMPERATURE_TARGET = 0x1A2;
+        private const uint IA32_PACKAGE_THERM_STATUS = 0x1B1;
+
+        private int _tjMax;
 
         private readonly PawnIOWrapper _io = new();
         private bool _init;
@@ -55,6 +59,21 @@ namespace PawnIO
             _lastTick = tick;
 
             return (float)(joules / seconds);
+        }
+
+        // Package temperature = TjMax - digital readout (distance to TjMax)
+        public float? GetPackageTemp()
+        {
+            if (!_init) return null;
+
+            if (_tjMax == 0)
+            {
+                _tjMax = ReadMsr(MSR_TEMPERATURE_TARGET, out ulong target) ? (int)((target >> 16) & 0xFF) : -1;
+                if (_tjMax is < 70 or > 125) _tjMax = 100;
+            }
+
+            if (!ReadMsr(IA32_PACKAGE_THERM_STATUS, out ulong status)) return null;
+            return _tjMax - (int)((status >> 16) & 0x7F);
         }
 
         private bool ReadMsr(uint msr, out ulong value)

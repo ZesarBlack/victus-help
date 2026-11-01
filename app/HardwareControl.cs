@@ -6,6 +6,7 @@ using GHelper.Gpu.AMD;
 using GHelper.Gpu.NVidia;
 using GHelper.Helpers;
 using GHelper.Hp;
+using GHelper.Msi;
 using System.Diagnostics;
 using System.Management;
 using System.Runtime.InteropServices;
@@ -61,6 +62,7 @@ public static class HardwareControl
     static bool isAlly = AppConfig.IsAlly();
     static bool isAMDiGPU = AppConfig.IsAMDiGPU();
     static bool isHP = AppConfig.IsHP();
+    static bool isMSI = AppConfig.IsMSI();
 
     static bool _chargeWatt = AppConfig.Is("charge_watt");
 
@@ -455,6 +457,7 @@ public static class HardwareControl
 
         if (isPZ13) return (float)GetCPUTempWMI();
         if (isHP) return cpuTemp = GetCPUTempHP();
+        if (isMSI) return cpuTemp = GetCPUTempMSI();
         cpuTemp = Program.acpi.DeviceGet(AsusACPI.Temp_CPU);
 
         if (cpuTemp < 0) try
@@ -480,7 +483,19 @@ public static class HardwareControl
     {
         int temp = HpWmi.GetTemp();
         if (temp > 0) return temp;
+        return GetThermalZoneTemp();
+    }
 
+    // MSI WMI has no documented temperature, read the Intel package sensor instead
+    static float GetCPUTempMSI()
+    {
+        float? temp = GetIntelMsr()?.GetPackageTemp();
+        if (temp > 0 && temp < 125) return (float)temp;
+        return GetThermalZoneTemp();
+    }
+
+    static float GetThermalZoneTemp()
+    {
         try
         {
             _thermalZones ??= new PerformanceCounterCategory("Thermal Zone Information").GetInstanceNames()
@@ -500,6 +515,7 @@ public static class HardwareControl
     public static int GetFan(AsusFan device)
     {
         if (isHP) return HpWmi.GetFan(device);
+        if (isMSI) return MsiWmi.GetFan(device);
         return Program.acpi.GetFan(device);
     }
 
@@ -543,7 +559,7 @@ public static class HardwareControl
 
         if (gpuTemp is null || gpuTemp < 0 || gpuTemp >= 125)
         {
-            int acpiTemp = isHP ? -1 : Program.acpi.DeviceGet(AsusACPI.Temp_GPU);
+            int acpiTemp = isHP || isMSI ? -1 : Program.acpi.DeviceGet(AsusACPI.Temp_GPU);
             gpuTemp = (acpiTemp > 0 && acpiTemp < 125) ? acpiTemp : null;
         }
 
@@ -820,24 +836,36 @@ public static class HardwareControl
     private static PawnIO.IntelMsr? _intelMsr;
     private static bool _intelMsrPowerFailed;
 
-    private static float? GetIntelMsrPower()
+    private static PawnIO.IntelMsr? GetIntelMsr()
     {
         if (_intelMsrPowerFailed || PawnIO.CpuInfo.IsAMD) return null;
+        if (_intelMsr is not null) return _intelMsr;
         try
         {
-            if (_intelMsr == null)
+            var msr = new PawnIO.IntelMsr();
+            if (!msr.Initialize(typeof(HardwareControl).Assembly))
             {
-                var msr = new PawnIO.IntelMsr();
-                if (!msr.Initialize(typeof(HardwareControl).Assembly))
-                {
-                    msr.Dispose();
-                    _intelMsrPowerFailed = true;
-                    Logger.WriteLine("Intel MSR: PawnIO/IntelMSR module unavailable (not installed?)");
-                    return null;
-                }
-                _intelMsr = msr;
-                Logger.WriteLine("CPU Power source: Intel RAPL MSR (PawnIO)");
+                msr.Dispose();
+                _intelMsrPowerFailed = true;
+                Logger.WriteLine("Intel MSR: PawnIO/IntelMSR module unavailable (not installed?)");
+                return null;
             }
+            _intelMsr = msr;
+            Logger.WriteLine("Intel MSR: PawnIO module loaded");
+        }
+        catch (Exception ex)
+        {
+            _intelMsrPowerFailed = true;
+            Logger.WriteLine("Intel MSR init failed: " + ex.Message);
+        }
+        return _intelMsr;
+    }
+
+    private static float? GetIntelMsrPower()
+    {
+        if (GetIntelMsr() is null) return null;
+        try
+        {
             float? power = _intelMsr.GetPackagePower();
             return power > 0 ? power : null;
         }

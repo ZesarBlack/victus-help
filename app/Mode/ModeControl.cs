@@ -157,7 +157,8 @@ namespace GHelper.Mode
 
                     if (AppConfig.Is("status_mode")) Program.acpi.DeviceSet(AsusACPI.StatusMode, [0x00, Modes.GetBase(mode) == AsusACPI.PerformanceSilent ? (byte)0x02 : (byte)0x03], "StatusMode");
                     if (AppConfig.IsHP()) HpWmi.SetPerformanceMode(Modes.GetBase(mode));
-                    else Program.acpi.SetPerformanceMode(AppConfig.IsManualModeRequired() ? AsusACPI.PerformanceManual : Modes.GetBase(mode));
+                    // MSI: EC shift mode not mapped yet, only Windows power mode + CPU boost are applied
+                    else if (!AppConfig.IsMSI()) Program.acpi.SetPerformanceMode(AppConfig.IsManualModeRequired() ? AsusACPI.PerformanceManual : Modes.GetBase(mode));
 
                     SetGPUClocks();
 
@@ -201,15 +202,15 @@ namespace GHelper.Mode
             // CPU Boost setting override
             if (AppConfig.GetMode("auto_boost") != -1)
                     PowerNative.SetCPUBoost(AppConfig.GetMode("auto_boost"));
-            else if (AppConfig.IsHP())
-                PowerNative.SetCPUBoost(HpBoost(Modes.GetBase(mode)));
+            else if (AppConfig.IsHPorMSI())
+                PowerNative.SetCPUBoost(BoostForMode(Modes.GetBase(mode)));
 
             settings.FansInit();
         }
 
 
         // Windows CPU boost: Silent = Disabled, Balanced = Enabled (not Aggressive), Turbo = Aggressive
-        private static int HpBoost(int baseMode) => baseMode switch
+        private static int BoostForMode(int baseMode) => baseMode switch
         {
             AsusACPI.PerformanceSilent => 0,
             AsusACPI.PerformanceTurbo => 2,
@@ -252,6 +253,12 @@ namespace GHelper.Mode
                     customFans = HpFanControl.IsRunning;
                 }
                 else HpFanControl.Stop();
+                return;
+            }
+
+            if (AppConfig.IsMSI())
+            {
+                if (AppConfig.IsApplyFans() || force) settings.LabelFansResult("MSI: custom fan curves not supported yet");
                 return;
             }
 

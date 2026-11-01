@@ -59,6 +59,13 @@ namespace GHelper
                 return;
             }
 
+            if (action == "msidump")
+            {
+                Msi.MsiWmi.Dump();
+                MessageBox.Show("MSI WMI dump saved to " + Logger.logFile, "Victus Helper");
+                return;
+            }
+
             string language = AppConfig.GetString("language");
             try
             {

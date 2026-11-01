@@ -766,6 +766,14 @@ public static class AppConfig
         return ContainsModel("Victus") || ContainsModel("OMEN") || _manufacturer.Value.Equals("HP", StringComparison.OrdinalIgnoreCase) || _manufacturer.Value.StartsWith("Hewlett", StringComparison.OrdinalIgnoreCase);
     }
 
+    public static bool IsMSI()
+    {
+        return _manufacturer.Value.StartsWith("Micro-Star", StringComparison.OrdinalIgnoreCase) || _manufacturer.Value.Equals("MSI", StringComparison.OrdinalIgnoreCase);
+    }
+
+    // Non-ASUS laptops with their own sensor / mode backend
+    public static bool IsHPorMSI() => IsHP() || IsMSI();
+
     public static bool IsBWIcon()
     {
         return Is("bw_icon");
