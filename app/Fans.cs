@@ -1,6 +1,7 @@
 ﻿using GHelper.Fan;
 using GHelper.Gpu.NVidia;
 using GHelper.Helpers;
+using GHelper.Hp;
 using GHelper.Mode;
 using GHelper.UI;
 using GHelper.USB;
@@ -41,6 +42,9 @@ namespace GHelper
         static int gpuPowerBase = 0;
         static bool isGPUPower => gpuPowerBase > 0;
         static bool clampFanDots = AppConfig.IsClampFanDots();
+
+        RButton[] hpPresetButtons = [];
+        System.Windows.Forms.Timer? timerHpFans;
 
         public Fans()
         {
@@ -288,6 +292,8 @@ namespace GHelper
 
             checkApplyUV.Click += CheckApplyUV_Click;
 
+            InitHpFans();
+
             buttonCalibrate.Click += ButtonCalibrate_Click;
 
             buttonDownload.Click += ButtonDownload_Click;
@@ -360,9 +366,96 @@ namespace GHelper
 
         private void Fans_FormClosed(object? sender, FormClosedEventArgs e)
         {
+            timerHpFans?.Dispose();
+
             //Because windows charts seem to eat a lot of memory :(
             GC.Collect(GC.MaxGeneration, GCCollectionMode.Forced);
         }
+
+        private void InitHpFans()
+        {
+            if (!AppConfig.IsHP()) return;
+
+            panelHpFans.Visible = true;
+            labelHpFans.Text = Properties.Strings.FanPresets;
+
+            buttonHpSilent.Text = Properties.Strings.FanPresetSilent;
+            buttonHpStandard.Text = Properties.Strings.FanPresetStandard;
+            buttonHpGaming.Text = Properties.Strings.FanPresetGaming;
+
+            buttonHpSilent.BorderColor = colorEco;
+            buttonHpStandard.BorderColor = colorStandard;
+            buttonHpGaming.BorderColor = colorTurbo;
+
+            hpPresetButtons = [buttonHpSilent, buttonHpStandard, buttonHpGaming];
+            for (int i = 0; i < hpPresetButtons.Length; i++)
+            {
+                int preset = i;
+                hpPresetButtons[i].Click += (_, _) => ButtonHpPreset_Click(preset);
+            }
+
+            InitHpRpm(numHpSilentCPU, 0, AsusFan.CPU);
+            InitHpRpm(numHpStandardCPU, 1, AsusFan.CPU);
+            InitHpRpm(numHpGamingCPU, 2, AsusFan.CPU);
+            InitHpRpm(numHpSilentGPU, 0, AsusFan.GPU);
+            InitHpRpm(numHpStandardGPU, 1, AsusFan.GPU);
+            InitHpRpm(numHpGamingGPU, 2, AsusFan.GPU);
+
+            VisualiseHpPreset();
+
+            timerHpFans = new System.Windows.Forms.Timer { Interval = 2000 };
+            timerHpFans.Tick += TimerHpFans_Tick;
+            timerHpFans.Start();
+        }
+
+        // Value is saved right away, the active preset picks it up on the next control tick
+        private void InitHpRpm(RNumericUpDown numeric, int preset, AsusFan device)
+        {
+            numeric.Minimum = HpFanControl.MinRpm;
+            numeric.Maximum = HpFanControl.MaxRpm;
+            numeric.Increment = HpFanControl.RpmStep;
+            numeric.Value = HpFanControl.GetPresetRpm(preset, device);
+            numeric.ValueChanged += (_, _) => HpFanControl.SetPresetRpm(preset, device, (int)numeric.Value);
+        }
+
+        private async void ButtonHpPreset_Click(int preset)
+        {
+            int next = HpFanControl.GetPreset() == preset ? HpFanControl.PresetOff : preset;
+
+            bool accepted = await Task.Run(() =>
+            {
+                bool result = HpFanControl.SetPreset(next);
+                if (next == HpFanControl.PresetOff || !result) modeControl.AutoFans();
+                return result;
+            });
+
+            if (IsDisposed) return;
+
+            LabelFansResult(accepted ? "" : Properties.Strings.FanPresetRejected);
+            VisualiseHpPreset();
+        }
+
+        private void VisualiseHpPreset()
+        {
+            int active = HpFanControl.GetPreset();
+            for (int i = 0; i < hpPresetButtons.Length; i++) hpPresetButtons[i].Activated = i == active;
+        }
+
+        private async void TimerHpFans_Tick(object? sender, EventArgs e)
+        {
+            if (!Visible) return;
+
+            var (cpu, gpu) = await Task.Run(() => (HardwareControl.GetFan(AsusFan.CPU), HardwareControl.GetFan(AsusFan.GPU)));
+            if (IsDisposed) return;
+
+            string text = $"{Properties.Strings.FanPresetCurrent}: CPU {FormatHpRpm(cpu)} · GPU {FormatHpRpm(gpu)}";
+            if (HpFanControl.IsProtecting) text += " · " + Properties.Strings.FanPresetProtection;
+
+            labelHpFansCurrent.Text = text;
+            labelHpFansCurrent.ForeColor = HpFanControl.IsProtecting ? Color.Red : foreMain;
+        }
+
+        private static string FormatHpRpm(int level) => level < 0 ? "-" : level * 100 + " RPM";
 
         private void CheckApplyUV_Click(object? sender, EventArgs e)
         {
@@ -1338,6 +1431,13 @@ namespace GHelper
             AppConfig.RemoveMode("cpu_temp");
 
             modeControl.ResetPerformanceMode();
+
+            if (AppConfig.IsHP())
+            {
+                HpFanControl.SetPreset(HpFanControl.PresetOff);
+                VisualiseHpPreset();
+                Task.Run(() => modeControl.AutoFans());
+            }
 
             InitPowerPlan();
 

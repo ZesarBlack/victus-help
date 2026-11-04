@@ -1124,4 +1124,25 @@ from heating up the sleeping laptop and draining the battery.</value>
   <data name="Background" xml:space="preserve">
     <value>Back</value>
   </data>
+  <data name="FanPresets" xml:space="preserve">
+    <value>Fixed fan speed (RPM)</value>
+  </data>
+  <data name="FanPresetSilent" xml:space="preserve">
+    <value>Silent</value>
+  </data>
+  <data name="FanPresetStandard" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="FanPresetGaming" xml:space="preserve">
+    <value>Gaming</value>
+  </data>
+  <data name="FanPresetCurrent" xml:space="preserve">
+    <value>Current</value>
+  </data>
+  <data name="FanPresetProtection" xml:space="preserve">
+    <value>thermal protection</value>
+  </data>
+  <data name="FanPresetRejected" xml:space="preserve">
+    <value>BIOS rejected the fan speed. Run as admin or check the log.</value>
+  </data>
 </root>

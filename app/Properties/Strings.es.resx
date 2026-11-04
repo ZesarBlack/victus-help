@@ -1124,4 +1124,25 @@ calienten el portátil dormido y agoten la batería.</value>
   <data name="Background" xml:space="preserve">
     <value>Fondo</value>
   </data>
+  <data name="FanPresets" xml:space="preserve">
+    <value>Velocidad fija de ventiladores (RPM)</value>
+  </data>
+  <data name="FanPresetSilent" xml:space="preserve">
+    <value>Silencioso</value>
+  </data>
+  <data name="FanPresetStandard" xml:space="preserve">
+    <value>Estándar</value>
+  </data>
+  <data name="FanPresetGaming" xml:space="preserve">
+    <value>Juegos</value>
+  </data>
+  <data name="FanPresetCurrent" xml:space="preserve">
+    <value>Actual</value>
+  </data>
+  <data name="FanPresetProtection" xml:space="preserve">
+    <value>protección térmica</value>
+  </data>
+  <data name="FanPresetRejected" xml:space="preserve">
+    <value>El BIOS rechazó la velocidad. Abre como admin o revisa el log.</value>
+  </data>
 </root>

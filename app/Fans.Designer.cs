@@ -65,6 +65,21 @@ namespace GHelper
             labelHysteresisUpValue = new Label();
             labelHysteresisDownValue = new Label();
             panelApplyFans = new Panel();
+            panelHpFans = new Panel();
+            labelHpFans = new Label();
+            labelHpFansCurrent = new Label();
+            tableHpFans = new TableLayoutPanel();
+            buttonHpSilent = new RButton();
+            buttonHpStandard = new RButton();
+            buttonHpGaming = new RButton();
+            labelHpCPU = new Label();
+            labelHpGPU = new Label();
+            numHpSilentCPU = new RNumericUpDown();
+            numHpStandardCPU = new RNumericUpDown();
+            numHpGamingCPU = new RNumericUpDown();
+            numHpSilentGPU = new RNumericUpDown();
+            numHpStandardGPU = new RNumericUpDown();
+            numHpGamingGPU = new RNumericUpDown();
             buttonCalibrate = new RButton();
             labelFansResult = new Label();
             checkApplyFans = new RCheckBox();
@@ -260,6 +275,7 @@ namespace GHelper
             panelFans.Controls.Add(panelTitleFans);
             panelFans.Controls.Add(panelHysteresis);
             panelFans.Controls.Add(panelApplyFans);
+            panelFans.Controls.Add(panelHpFans);
             panelFans.Dock = DockStyle.Fill;
             panelFans.Location = new Point(530, 0);
             panelFans.Margin = new Padding(0);
@@ -602,9 +618,179 @@ namespace GHelper
             labelHysteresisDownValue.TabIndex = 5;
             labelHysteresisDownValue.Text = "Very Low";
             labelHysteresisDownValue.TextAlign = ContentAlignment.MiddleRight;
-            // 
+            //
+            // panelHpFans
+            //
+            panelHpFans.Controls.Add(tableHpFans);
+            panelHpFans.Controls.Add(labelHpFansCurrent);
+            panelHpFans.Controls.Add(labelHpFans);
+            panelHpFans.Dock = DockStyle.Bottom;
+            panelHpFans.Margin = new Padding(4);
+            panelHpFans.Name = "panelHpFans";
+            panelHpFans.Size = new Size(810, 278);
+            panelHpFans.TabIndex = 5;
+            panelHpFans.Visible = false;
+            //
+            // labelHpFans
+            //
+            labelHpFans.AutoSize = true;
+            labelHpFans.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            labelHpFans.Location = new Point(18, 8);
+            labelHpFans.Margin = new Padding(4, 0, 4, 0);
+            labelHpFans.Name = "labelHpFans";
+            labelHpFans.Size = new Size(90, 32);
+            labelHpFans.TabIndex = 0;
+            //
+            // labelHpFansCurrent
+            //
+            labelHpFansCurrent.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            labelHpFansCurrent.Location = new Point(18, 42);
+            labelHpFansCurrent.Margin = new Padding(4, 0, 4, 0);
+            labelHpFansCurrent.Name = "labelHpFansCurrent";
+            labelHpFansCurrent.Size = new Size(777, 32);
+            labelHpFansCurrent.TabIndex = 1;
+            labelHpFansCurrent.TextAlign = ContentAlignment.MiddleLeft;
+            //
+            // tableHpFans
+            //
+            tableHpFans.ColumnCount = 4;
+            tableHpFans.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
+            tableHpFans.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33F));
+            tableHpFans.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33F));
+            tableHpFans.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.33F));
+            tableHpFans.Controls.Add(buttonHpSilent, 1, 0);
+            tableHpFans.Controls.Add(buttonHpStandard, 2, 0);
+            tableHpFans.Controls.Add(buttonHpGaming, 3, 0);
+            tableHpFans.Controls.Add(labelHpCPU, 0, 1);
+            tableHpFans.Controls.Add(numHpSilentCPU, 1, 1);
+            tableHpFans.Controls.Add(numHpStandardCPU, 2, 1);
+            tableHpFans.Controls.Add(numHpGamingCPU, 3, 1);
+            tableHpFans.Controls.Add(labelHpGPU, 0, 2);
+            tableHpFans.Controls.Add(numHpSilentGPU, 1, 2);
+            tableHpFans.Controls.Add(numHpStandardGPU, 2, 2);
+            tableHpFans.Controls.Add(numHpGamingGPU, 3, 2);
+            tableHpFans.Dock = DockStyle.Bottom;
+            tableHpFans.Location = new Point(0, 78);
+            tableHpFans.Margin = new Padding(0);
+            tableHpFans.Name = "tableHpFans";
+            tableHpFans.Padding = new Padding(10, 0, 10, 0);
+            tableHpFans.RowCount = 3;
+            tableHpFans.RowStyles.Add(new RowStyle(SizeType.Absolute, 68F));
+            tableHpFans.RowStyles.Add(new RowStyle(SizeType.Absolute, 66F));
+            tableHpFans.RowStyles.Add(new RowStyle(SizeType.Absolute, 66F));
+            tableHpFans.Size = new Size(810, 200);
+            tableHpFans.TabIndex = 2;
+            //
+            // buttonHpSilent
+            //
+            buttonHpSilent.Activated = false;
+            buttonHpSilent.BackColor = SystemColors.ControlLight;
+            buttonHpSilent.BorderColor = Color.Transparent;
+            buttonHpSilent.BorderRadius = 2;
+            buttonHpSilent.Dock = DockStyle.Fill;
+            buttonHpSilent.FlatStyle = FlatStyle.Flat;
+            buttonHpSilent.Margin = new Padding(6);
+            buttonHpSilent.Name = "buttonHpSilent";
+            buttonHpSilent.Secondary = true;
+            buttonHpSilent.TabIndex = 0;
+            buttonHpSilent.UseVisualStyleBackColor = false;
+            //
+            // buttonHpStandard
+            //
+            buttonHpStandard.Activated = false;
+            buttonHpStandard.BackColor = SystemColors.ControlLight;
+            buttonHpStandard.BorderColor = Color.Transparent;
+            buttonHpStandard.BorderRadius = 2;
+            buttonHpStandard.Dock = DockStyle.Fill;
+            buttonHpStandard.FlatStyle = FlatStyle.Flat;
+            buttonHpStandard.Margin = new Padding(6);
+            buttonHpStandard.Name = "buttonHpStandard";
+            buttonHpStandard.Secondary = true;
+            buttonHpStandard.TabIndex = 1;
+            buttonHpStandard.UseVisualStyleBackColor = false;
+            //
+            // buttonHpGaming
+            //
+            buttonHpGaming.Activated = false;
+            buttonHpGaming.BackColor = SystemColors.ControlLight;
+            buttonHpGaming.BorderColor = Color.Transparent;
+            buttonHpGaming.BorderRadius = 2;
+            buttonHpGaming.Dock = DockStyle.Fill;
+            buttonHpGaming.FlatStyle = FlatStyle.Flat;
+            buttonHpGaming.Margin = new Padding(6);
+            buttonHpGaming.Name = "buttonHpGaming";
+            buttonHpGaming.Secondary = true;
+            buttonHpGaming.TabIndex = 2;
+            buttonHpGaming.UseVisualStyleBackColor = false;
+            //
+            // labelHpCPU
+            //
+            labelHpCPU.Dock = DockStyle.Fill;
+            labelHpCPU.Margin = new Padding(4, 0, 0, 0);
+            labelHpCPU.Name = "labelHpCPU";
+            labelHpCPU.TabIndex = 3;
+            labelHpCPU.Text = "CPU";
+            labelHpCPU.TextAlign = ContentAlignment.MiddleLeft;
+            //
+            // labelHpGPU
+            //
+            labelHpGPU.Dock = DockStyle.Fill;
+            labelHpGPU.Margin = new Padding(4, 0, 0, 0);
+            labelHpGPU.Name = "labelHpGPU";
+            labelHpGPU.TabIndex = 7;
+            labelHpGPU.Text = "GPU";
+            labelHpGPU.TextAlign = ContentAlignment.MiddleLeft;
+            //
+            // numHpSilentCPU
+            //
+            numHpSilentCPU.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            numHpSilentCPU.Margin = new Padding(6);
+            numHpSilentCPU.Name = "numHpSilentCPU";
+            numHpSilentCPU.TabIndex = 4;
+            numHpSilentCPU.TextAlign = HorizontalAlignment.Center;
+            //
+            // numHpStandardCPU
+            //
+            numHpStandardCPU.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            numHpStandardCPU.Margin = new Padding(6);
+            numHpStandardCPU.Name = "numHpStandardCPU";
+            numHpStandardCPU.TabIndex = 5;
+            numHpStandardCPU.TextAlign = HorizontalAlignment.Center;
+            //
+            // numHpGamingCPU
+            //
+            numHpGamingCPU.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            numHpGamingCPU.Margin = new Padding(6);
+            numHpGamingCPU.Name = "numHpGamingCPU";
+            numHpGamingCPU.TabIndex = 6;
+            numHpGamingCPU.TextAlign = HorizontalAlignment.Center;
+            //
+            // numHpSilentGPU
+            //
+            numHpSilentGPU.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            numHpSilentGPU.Margin = new Padding(6);
+            numHpSilentGPU.Name = "numHpSilentGPU";
+            numHpSilentGPU.TabIndex = 8;
+            numHpSilentGPU.TextAlign = HorizontalAlignment.Center;
+            //
+            // numHpStandardGPU
+            //
+            numHpStandardGPU.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            numHpStandardGPU.Margin = new Padding(6);
+            numHpStandardGPU.Name = "numHpStandardGPU";
+            numHpStandardGPU.TabIndex = 9;
+            numHpStandardGPU.TextAlign = HorizontalAlignment.Center;
+            //
+            // numHpGamingGPU
+            //
+            numHpGamingGPU.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            numHpGamingGPU.Margin = new Padding(6);
+            numHpGamingGPU.Name = "numHpGamingGPU";
+            numHpGamingGPU.TabIndex = 10;
+            numHpGamingGPU.TextAlign = HorizontalAlignment.Center;
+            //
             // panelApplyFans
-            // 
+            //
             panelApplyFans.Controls.Add(buttonCalibrate);
             panelApplyFans.Controls.Add(labelFansResult);
             panelApplyFans.Controls.Add(checkApplyFans);
@@ -2215,6 +2401,21 @@ namespace GHelper
         private RTrackBar trackGPUTemp;
         private Panel panelTitleFans;
         private Panel panelApplyFans;
+        private Panel panelHpFans;
+        private Label labelHpFans;
+        private Label labelHpFansCurrent;
+        private TableLayoutPanel tableHpFans;
+        private RButton buttonHpSilent;
+        private RButton buttonHpStandard;
+        private RButton buttonHpGaming;
+        private Label labelHpCPU;
+        private Label labelHpGPU;
+        private RNumericUpDown numHpSilentCPU;
+        private RNumericUpDown numHpStandardCPU;
+        private RNumericUpDown numHpGamingCPU;
+        private RNumericUpDown numHpSilentGPU;
+        private RNumericUpDown numHpStandardGPU;
+        private RNumericUpDown numHpGamingGPU;
         private Label labelFansResult;
         private RCheckBox checkApplyFans;
         private RButton buttonReset;

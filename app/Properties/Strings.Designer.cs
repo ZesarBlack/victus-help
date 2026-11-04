@@ -2043,6 +2043,69 @@ namespace GHelper.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fixed fan speed (RPM).
+        /// </summary>
+        internal static string FanPresets {
+            get {
+                return ResourceManager.GetString("FanPresets", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Silent.
+        /// </summary>
+        internal static string FanPresetSilent {
+            get {
+                return ResourceManager.GetString("FanPresetSilent", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Standard.
+        /// </summary>
+        internal static string FanPresetStandard {
+            get {
+                return ResourceManager.GetString("FanPresetStandard", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Gaming.
+        /// </summary>
+        internal static string FanPresetGaming {
+            get {
+                return ResourceManager.GetString("FanPresetGaming", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Current.
+        /// </summary>
+        internal static string FanPresetCurrent {
+            get {
+                return ResourceManager.GetString("FanPresetCurrent", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to thermal protection.
+        /// </summary>
+        internal static string FanPresetProtection {
+            get {
+                return ResourceManager.GetString("FanPresetProtection", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to BIOS rejected the fan speed. Run as admin or check the log.
+        /// </summary>
+        internal static string FanPresetRejected {
+            get {
+                return ResourceManager.GetString("FanPresetRejected", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Looks up a localized string similar to Open G-Helper window.
         /// </summary>
         internal static string OpenGHelper {

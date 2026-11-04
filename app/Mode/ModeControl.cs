@@ -246,7 +246,12 @@ namespace GHelper.Mode
 
             if (AppConfig.IsHP())
             {
-                if (AppConfig.IsApplyFans() || force)
+                if (HpFanControl.GetPreset() != HpFanControl.PresetOff)
+                {
+                    HpFanControl.StartPreset();
+                    customFans = true;
+                }
+                else if (AppConfig.IsApplyFans() || force)
                 {
                     HpFanControl.Start(AppConfig.GetFanConfig(AsusFan.CPU), AppConfig.GetFanConfig(AsusFan.GPU));
                     customFans = HpFanControl.IsRunning;
